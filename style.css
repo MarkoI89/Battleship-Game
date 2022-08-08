@@ -1,0 +1,45 @@
+h1 {
+  height: 30px;
+  width: 550px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2m;
+  color: white;
+  text-align: center;
+}
+.ship {
+  background-color: red;
+}
+.start-screen {
+  background-image: url(./img/background.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.grid {
+  background: #2d96eb;
+  opacity: 0.9;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  height: 550px;
+  width: 550px;
+}
+
+.start-game-button {
+  width: 150px;
+  height: 30px;
+  background-color: #e87229;
+  color: white;
+}
+
+.new-game-button{
+  padding: 30px
+  ;
+}
