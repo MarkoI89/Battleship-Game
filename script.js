@@ -170,7 +170,8 @@ gridElement.addEventListener("click", (event) => {
       num += 1;
       if (num === 17) {
         emptyGrid();
-        alert("YOU WON");
+        //alert("YOU WON");
+        alertBoxWon();
       }
     } else {
       clickedCell.classList.add("missed-hit");
@@ -214,6 +215,23 @@ function alertBoxLost() {
   const restartGame = document.createElement("button");
   const p = document.createElement("p");
   p.textContent = "YOU SUUUUCK!!!";
+  main.appendChild(divBox);
+  divBox.appendChild(p);
+  divBox.appendChild(restartGame);
+  restartGame.classList.add("restart-game");
+  restartGame.addEventListener("click", () => {
+    startNewGame();
+  });
+  divBox.classList.add("alertBox");
+}
+
+function alertBoxWon() {
+  gridElement.innerHTML = "";
+  divBox.innerHTML = "";
+  const main = document.querySelector("main");
+  const restartGame = document.createElement("button");
+  const p = document.createElement("p");
+  p.textContent = "YOU WOOOON!!!";
   main.appendChild(divBox);
   divBox.appendChild(p);
   divBox.appendChild(restartGame);
