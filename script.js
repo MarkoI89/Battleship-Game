@@ -2,11 +2,13 @@ let newGame = document.getElementById("new-game");
 const gridElement = document.querySelector(".grid");
 const gridColumns = 10;
 const gridRows = 10;
-const cells = [];
+let cells = [];
 const h1 = document.querySelector("h1");
-const startScreen = document.querySelector(".start-screen")
+const startScreen = document.querySelector(".start-screen");
+const divBox = document.createElement("div");
 let num = 0;
 let missedHit = 0;
+
 class Ship {
   constructor(name, length) {
     this.name = name;
@@ -83,11 +85,15 @@ const ships = [
 ];
 //Function creates grid and ships
 function startNewGame() {
+  divBox.remove();
   createTheGrid();
   createShips();
+  currentStep = "placement";
+  missedHit = 0;
 }
 //function creates grid, its invoked in function: startNewGame
 function createTheGrid() {
+  cells = [];
   for (let i = 0; i < gridColumns * gridRows; i++) {
     const div = document.createElement("div");
     div.classList.add("cell");
@@ -105,7 +111,7 @@ function nextStep() {
       newGame.textContent = "Save ships";
       startNewGame();
       h1.innerHTML = "Player 1: Place your ships";
-      currentStep = "placement";
+
       break;
     case "placement":
       h1.innerHTML = "KILL THE COMPUTER";
@@ -164,17 +170,15 @@ gridElement.addEventListener("click", (event) => {
       num += 1;
       if (num === 17) {
         emptyGrid();
-        alert("PLAYER WON");
+        alert("YOU WON");
       }
-      //alert("found ship");
     } else {
       clickedCell.classList.add("missed-hit");
       missedHit += 1;
       if (missedHit == 2) {
         emptyGrid();
-        alert("YOU LOSE");
+        alertBoxLost();
       }
-      //alert("you suck");
     }
   }
 });
@@ -203,8 +207,19 @@ function getSelectedShip() {
   const findShip = ships.find((ship) => ship.isSelectedForPlacement);
   return findShip;
 }
-
-function loadStartScreen (){
-  window.addEventListener('load', () => {
-  })
+function alertBoxLost() {
+  gridElement.innerHTML = "";
+  divBox.innerHTML = "";
+  const main = document.querySelector("main");
+  const restartGame = document.createElement("button");
+  const p = document.createElement("p");
+  p.textContent = "YOU SUUUUCK!!!";
+  main.appendChild(divBox);
+  divBox.appendChild(p);
+  divBox.appendChild(restartGame);
+  restartGame.classList.add("restart-game");
+  restartGame.addEventListener("click", () => {
+    startNewGame();
+  });
+  divBox.classList.add("alertBox");
 }
