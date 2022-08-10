@@ -23,7 +23,7 @@ h1 {
 }
 
 .grid {
-  background: #2d96eb;
+  background-image: url(./img/WUmQ.gif);
   opacity: 0.9;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -39,7 +39,28 @@ h1 {
   color: white;
 }
 
-.new-game-button{
-  padding: 30px
-  ;
+.new-game-button {
+  padding: 30px;
+}
+
+.carrier {
+  background: rgb(8, 241, 194);
+}
+.destroyer {
+  background-color: green;
+}
+.submarine {
+  background-color: #e87229;
+}
+.cruiser {
+  background-color: gray;
+}
+.battleship {
+  background-color: blue;
+}
+
+.selected-for-placement {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0.5rem yellow;
 }
