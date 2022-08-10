@@ -64,3 +64,16 @@ h1 {
   z-index: 1;
   box-shadow: 0 0 0.5rem yellow;
 }
+
+.hit {
+  background-image: url("./img/dot.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.missed-hit {
+  background-image: url("./img/x-g201667135_640.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

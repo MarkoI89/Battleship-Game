@@ -4,8 +4,9 @@ const gridColumns = 10;
 const gridRows = 10;
 const cells = [];
 const h1 = document.querySelector("h1");
+const startScreen = document.querySelector(".start-screen")
 let num = 0;
-
+let missedHit = 0;
 class Ship {
   constructor(name, length) {
     this.name = name;
@@ -158,15 +159,21 @@ gridElement.addEventListener("click", (event) => {
   } else if (currentStep === "play") {
     const foundShip = getShipInCell(clickedCell);
     if (foundShip) {
-      clickedCell.style.backgroundImage = "url('img/dot.png')"
-      //clickedCell.style.backgroundColor = "red";
+      clickedCell.classList.add("hit");
+
       num += 1;
       if (num === 17) {
+        emptyGrid();
         alert("PLAYER WON");
       }
       //alert("found ship");
     } else {
-      clickedCell.innerHTML = "X";
+      clickedCell.classList.add("missed-hit");
+      missedHit += 1;
+      if (missedHit == 2) {
+        emptyGrid();
+        alert("YOU LOSE");
+      }
       //alert("you suck");
     }
   }
@@ -195,4 +202,9 @@ function selectShipInClickedCell(clickedCell) {
 function getSelectedShip() {
   const findShip = ships.find((ship) => ship.isSelectedForPlacement);
   return findShip;
+}
+
+function loadStartScreen (){
+  window.addEventListener('load', () => {
+  })
 }
