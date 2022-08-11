@@ -73,7 +73,7 @@ h1 {
 
 .hit {
   background-image: url("./img/dot.png");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -104,6 +104,8 @@ h1 {
 
 .score{
   background-color: rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
   border-radius: 30px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 25px;
@@ -111,4 +113,10 @@ h1 {
   position: relative;
   left: 100px;
   bottom: 195px;
+}
+.shots{
+  color: red;
+}
+.missed{
+  color: red;
 }

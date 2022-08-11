@@ -8,7 +8,9 @@ const startScreen = document.querySelector(".start-screen");
 const divBox = document.createElement("div");
 const shots = document.querySelector(".shots");
 const missed = document.querySelector(".missed");
+let explosion = new Audio('./audio/explode.mp3')
 let num = 17;
+shipNum = 0;
 let missedHit = 0;
 
 class Ship {
@@ -173,6 +175,9 @@ gridElement.addEventListener("click", (event) => {
     const foundShip = getShipInCell(clickedCell);
     if (foundShip) {
       clickedCell.classList.add("hit");
+      // test
+
+      // end test
 
       num -= 1;
       shots.textContent = num;
