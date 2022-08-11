@@ -6,7 +6,9 @@ let cells = [];
 const h1 = document.querySelector("h1");
 const startScreen = document.querySelector(".start-screen");
 const divBox = document.createElement("div");
-let num = 0;
+const shots = document.querySelector(".shots");
+const missed = document.querySelector(".missed");
+let num = 17;
 let missedHit = 0;
 
 class Ship {
@@ -85,11 +87,16 @@ const ships = [
 ];
 //Function creates grid and ships
 function startNewGame() {
+  num = 17;
+  missedHit = 0;
+  shots.textContent = num;
+  missed.textContent = missedHit;
+  h1.innerHTML = "Place your ships";
   divBox.remove();
   createTheGrid();
   createShips();
   currentStep = "placement";
-  missedHit = 0;
+  num = 17;
 }
 //function creates grid, its invoked in function: startNewGame
 function createTheGrid() {
@@ -99,7 +106,7 @@ function createTheGrid() {
     div.classList.add("cell");
     div.dataset.index = i;
     gridElement.append(div);
-    div.textContent = i;
+    //div.textContent = i;
     cells.push(div);
   }
 }
@@ -110,11 +117,11 @@ function nextStep() {
     case "start":
       newGame.textContent = "Save ships";
       startNewGame();
-      h1.innerHTML = "Player 1: Place your ships";
+      h1.innerHTML = "Place your ships";
 
       break;
     case "placement":
-      h1.innerHTML = "KILL THE COMPUTER";
+      h1.innerHTML = "Find ships";
       currentStep = "play";
       emptyGrid();
       break;
@@ -137,11 +144,11 @@ function createShips() {
   for (const ship of ships) {
     ship.place(i * 2 + i * gridColumns, i % 2 === 0 ? "down" : "across");
 
-    // for (let j = 0; j < ship.length; j++) {
-    // const index = j * gridColumns + i;
-    // const cell = cells[index];
-    // ship.cells.push(cell);
-    // }
+    //for (let j = 0; j < ship.length; j++) {
+    //const index = j * gridColumns + i;
+    //const cell = cells[index];
+    //ship.cells.push(cell);
+    //}
     i++;
   }
 }
@@ -167,16 +174,17 @@ gridElement.addEventListener("click", (event) => {
     if (foundShip) {
       clickedCell.classList.add("hit");
 
-      num += 1;
-      if (num === 17) {
+      num -= 1;
+      shots.textContent = num;
+      if (num === 0) {
         emptyGrid();
-        //alert("YOU WON");
         alertBoxWon();
       }
     } else {
       clickedCell.classList.add("missed-hit");
       missedHit += 1;
-      if (missedHit == 2) {
+      missed.textContent = missedHit;
+      if (missedHit == 20) {
         emptyGrid();
         alertBoxLost();
       }
@@ -219,6 +227,7 @@ function alertBoxLost() {
   divBox.appendChild(p);
   divBox.appendChild(restartGame);
   restartGame.classList.add("restart-game");
+  restartGame.textContent = "START NEW GAME";
   restartGame.addEventListener("click", () => {
     startNewGame();
   });
@@ -236,6 +245,7 @@ function alertBoxWon() {
   divBox.appendChild(p);
   divBox.appendChild(restartGame);
   restartGame.classList.add("restart-game");
+  restartGame.textContent = "START NEW GAME";
   restartGame.addEventListener("click", () => {
     startNewGame();
   });
